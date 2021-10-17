@@ -1,15 +1,15 @@
-import api from 'modules/api/api';
-import { JOBS } from 'modules/api/endpoints';
 import React, { useEffect } from 'react';
+import { JOBS } from 'modules/api/endpoints';
+import useFetch from 'hooks/useFetch';
 
 export default function Jobs() {
+  const { response, performFetch } = useFetch(JOBS);
+
   useEffect(() => {
-    async function fetchAPI() {
-      const response = await api.fetch(JOBS);
-      console.log(response);
-    }
-    fetchAPI();
-  }, []);
+    performFetch();
+  }, [performFetch]);
+
+  console.log(response);
 
   return <div>Jobs Component!</div>;
 }
